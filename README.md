@@ -40,3 +40,52 @@ npm run build
 ```
 yarn build
 ```
+
+## Данные и типы данных, используемые в приложении
+
+Карточка товара
+```
+export interface IProduct {
+    id: string;
+    description: string;
+    image: string;
+    title: string;
+    category: string;
+    price: number
+}
+```
+Массив карточек на главной странице
+```
+export interface IProductsList {
+    products: IProduct[];
+    preview: string | null;
+}
+```
+Информация о товарах в корзине
+```
+export type IBasket = Pick<IProduct, 'title' | 'price'>;
+```
+Форма ввода данных об адресе и способе доставки
+```
+export interface IOrder {
+    payment: string;
+    adress: string;
+}
+```
+Форма ввода контактных данных покупателя
+```
+export interface IBuyerInfo {
+    email: string;
+    phone: string;
+}
+```
+Проверка валидации форм
+```
+export interface IOrderData {
+    CheckValidation(data: Record<keyof IOrder, string>): boolean;
+}
+
+export interface IBuyerInfoData {
+    CheckValidation(data: Record<keyof IBuyerInfo, string>): boolean;
+}
+```
