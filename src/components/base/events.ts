@@ -1,4 +1,3 @@
-
 type EventName = string | RegExp;
 type Subscriber = Function;
 type EmitterEvent = {
@@ -11,7 +10,6 @@ export interface IEvents {
     emit<T extends object>(event: string, data?: T): void;
     trigger<T extends object>(event: string, context?: Partial<T>): (data: T) => void;
 }
-
 
 export class EventEmitter implements IEvents {
     _events: Map<EventName, Set<Subscriber>>;
@@ -27,7 +25,6 @@ export class EventEmitter implements IEvents {
         this._events.get(eventName)?.add(callback);
     }
 
-
     off(eventName: EventName, callback: Subscriber) {
         if (this._events.has(eventName)) {
             this._events.get(eventName)!.delete(callback);
@@ -37,29 +34,21 @@ export class EventEmitter implements IEvents {
         }
     }
 
-
     emit<T extends object>(eventName: string, data?: T) {
         this._events.forEach((subscribers, name) => {
-            if (name === '*') subscribers.forEach(callback => callback({
-                eventName,
-                data
-            }));
             if (name instanceof RegExp && name.test(eventName) || name === eventName) {
                 subscribers.forEach(callback => callback(data));
             }
         });
     }
 
-
     onAll(callback: (event: EmitterEvent) => void) {
         this.on("*", callback);
     }
 
-
     offAll() {
         this._events = new Map<string, Set<Subscriber>>();
     }
-
 
     trigger<T extends object>(eventName: string, context?: Partial<T>) {
         return (event: object = {}) => {
@@ -70,3 +59,4 @@ export class EventEmitter implements IEvents {
         };
     }
 }
+
