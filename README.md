@@ -194,20 +194,25 @@ interface IOrder extends IOrderForm {
 
 ## Методы и их функциональность
 ### API методы (`features/api/`)
+
 #### `baseApi.ts`
+
 - `get`: Выполняет GET-запрос к указанному эндпоинту
 
 - `post`: Отправляет POST-запрос с переданными данными
 
 - `handleResponse`: Обрабатывает ответ сервера, проверяет на ошибки
 
-`productApi.ts`
+#### `productApi.ts`
+
 - `getProducts`: Получает список всех товаров
 
 - `getProductById`: Получает детальную информацию о конкретном товаре
 
 ### Корзина (`features/cart/`)
-`cartSlice.ts`
+
+#### `cartSlice.ts`
+
 - `addItem`: Добавляет товар в корзину или увеличивает количество
 
 - `removeItem`: Уменьшает количество товара или удаляет из корзины
@@ -217,7 +222,9 @@ interface IOrder extends IOrderForm {
 - `calculateTotal`: Пересчитывает общую сумму заказа
 
 ### Товары (`features/products/`)
-`productsSlice.ts`
+
+#### `productsSlice.ts`
+
 - `setProducts`: Сохраняет список товаров в хранилище
 
 - `setLoading`: Управляет состоянием загрузки
@@ -225,7 +232,9 @@ interface IOrder extends IOrderForm {
 - `setError`: Сохраняет ошибку при загрузке товаров
 
 ### Заказ (`features/order/`)
-`orderSlice.ts`
+
+#### `orderSlice.ts`
+
 - `setAddress`: Сохраняет адрес доставки
 
 - `setPaymentMethod`: Устанавливает способ оплаты
@@ -235,14 +244,17 @@ interface IOrder extends IOrderForm {
 - `submitOrder`: Отправляет заказ на сервер
 
 ### Компоненты (`shared/components/`)
-`Modal`
+
+#### `Modal`
+
 - `open`: Открывает модальное окно
 
 - `close`: Закрывает модальное окно
 
 - `setContent`: Устанавливает содержимое модального окна
 
-`Notification`
+#### `Notification`
+
 - `showSuccess`: Показывает уведомление об успехе
 
 - `showError`: Показывает уведомление об ошибке
@@ -250,14 +262,17 @@ interface IOrder extends IOrderForm {
 - `hide`: Скрывает уведомление
 
 ### Вспомогательные методы (`shared/utils/`)
-`validation.ts`
+
+#### `validation.ts`
+
 - `validateEmail`: Проверяет валидность email
 
 - `validatePhone`: Проверяет валидность телефона
 
 - `validateAddress`: Проверяет валидность адреса
 
-`formatters.ts`
+#### `formatters.ts`
+
 - `formatPrice`: Форматирует цену для отображения
 
 - `truncateText`: Обрезает длинный текст
