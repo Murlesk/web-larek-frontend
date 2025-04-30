@@ -194,7 +194,7 @@ interface IOrder extends IOrderForm {
 
 ## Методы и их функциональность
 ### API методы (`features/api/`)
-`baseApi.ts`
+#### `baseApi.ts`
 - `get`: Выполняет GET-запрос к указанному эндпоинту
 
 - `post`: Отправляет POST-запрос с переданными данными
