@@ -89,7 +89,7 @@ src/
 ## Основные сущности и типы данных
 ### Товар (Product)
 
-typescript
+```
 interface IProduct {
   id: string;
   title: string;
@@ -98,9 +98,9 @@ interface IProduct {
   image: string;
   category: string;
 }
-
+```
 ### Корзина (Cart)
-typescript
+```
 interface ICartItem extends Pick<IProduct, 'id' | 'title' | 'price'> {
   quantity: number;
 }
@@ -109,9 +109,9 @@ interface ICartState {
   items: ICartItem[];
   total: number;
 }
-
+```
 ### Заказ (Order)
-typescript
+```
 interface IOrderForm {
   address: string;
   payment: 'online' | 'cash';
@@ -123,3 +123,4 @@ interface IOrder extends IOrderForm {
   items: ICartItem[];
   total: number;
 }
+```
