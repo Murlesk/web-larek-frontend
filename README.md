@@ -40,4 +40,86 @@ npm run build
 ```
 yarn build
 ```
+## Структура проекта
+```
+src/
+│
+├── app/                    # Конфигурация хранилища
+│   ├── store.ts            # Redux store
+│   └── rootReducer.ts      # Комбинированные редьюсеры
+│
+├── features/               # Функциональные модули
+│   ├── api/                # Работа с API
+│   │   ├── baseApi.ts      # Базовые настройки axios
+│   │   └── productApi.ts   # API товаров
+│   │
+│   ├── cart/               # Логика корзины
+│   │   ├── components/     # Компоненты корзины
+│   │   ├── hooks/         # Кастомные хуки
+│   │   └── slice.ts       # Redux slice
+│   │
+│   ├── order/              # Оформление заказа
+│   │   ├── components/     # Компоненты заказа
+│   │   └── slice.ts       # Redux slice
+│   │
+│   └── products/           # Товары
+│       ├── components/     # Компоненты товаров
+│       └── slice.ts       # Redux slice
+│
+├── pages/                  # Страницы приложения
+│   ├── CartPage/           # Страница корзины
+│   ├── CatalogPage/        # Каталог товаров
+│   └── ProductPage/        # Страница товара
+│
+├── shared/                 # Общие компоненты и утилиты
+│   ├── components/         # UI-компоненты
+│   │   ├── AppHeader/      # Шапка приложения
+│   │   ├── Modal/          # Модальные окна
+│   │   └── Notification/   # Уведомления
+│   │
+│   ├── hooks/              # Кастомные хуки
+│   ├── styles/             # Глобальные стили
+│   ├── types/              # Типы данных
+│   └── utils/              # Вспомогательные функции
+│
+├── App.tsx                 # Корневой компонент
+└── main.tsx                # Точка входа
+```
 
+## Основные сущности и типы данных
+### Товар (Product)
+
+typescript
+interface IProduct {
+  id: string;
+  title: string;
+  description: string;
+  price: number;
+  image: string;
+  category: string;
+}
+
+### Корзина (Cart)
+typescript
+interface ICartItem extends Pick<IProduct, 'id' | 'title' | 'price'> {
+  quantity: number;
+}
+
+interface ICartState {
+  items: ICartItem[];
+  total: number;
+}
+
+### Заказ (Order)
+typescript
+interface IOrderForm {
+  address: string;
+  payment: 'online' | 'cash';
+  email: string;
+  phone: string;
+}
+
+interface IOrder extends IOrderForm {
+  items: ICartItem[];
+  total: number;
+}
